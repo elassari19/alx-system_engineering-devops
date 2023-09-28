@@ -5,6 +5,6 @@ item=0
 
 while [ $item -lt 10 ]
 do
-  echo "Best School"
-  (( item++ ))
+echo "Best School"
+(( item++ ))
 done

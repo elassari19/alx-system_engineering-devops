@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 # should print "Best School" number of itmes
 
-items = 10
-for (( item = 0; item < items; item++ ))
+for (( item = 0; item < 10; item++ ))
 do
-  echo "Best School"
+echo "Best School"
 done
