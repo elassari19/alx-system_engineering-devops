@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+#   should create file /var/run/myscript.pid
+#   should print "To infinity and beyond"
+#   should print "I hate the kill command"
+#   should print "Y U no love me?!"
+#   should deletes file /var/run/myscript.pid
+
+terminator() {
+  rm /var/run/myscript.pid
+  exit
+}
+
+echo "$$" > /var/run/myscript.pid
+
+while true
+do
+  echo "To infinity and beyond"
+  sleep 2
+  trap 'echo "Y U no love me?!"' SIGINT
+  trap 'echo "I hate the kill command" && terminator' SIGTERM
+  trap 'terminator' SIGQUIT
+done

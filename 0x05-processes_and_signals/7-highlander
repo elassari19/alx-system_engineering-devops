@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# should print "To infinity and beyond"
+#   should print "I am invincible!!!" after sleeping two
+
+while true
+do
+  echo "To infinity and beyond"
+  sleep 2
+  trap 'echo "I am invincible!!!"' SIGTERM 
+done
