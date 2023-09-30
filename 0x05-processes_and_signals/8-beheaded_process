@@ -2,4 +2,3 @@
 # should kill 7-highlander process
 
 pkill -f -SIGKILL 7-highlander
-
