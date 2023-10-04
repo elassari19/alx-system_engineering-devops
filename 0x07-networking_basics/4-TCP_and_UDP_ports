@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# should print listening ports with only listening sockets that show PID with progrmas name
+
+netstat -lp
