@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
 # should listening to local host on port 98
 
-nc -l 98
+$port="14881"
+if [[ $(netstat -ltn | grep ":${port} " | wc -l) -eq "1" ]] ; then echo "Port $port listened to";
+fi
