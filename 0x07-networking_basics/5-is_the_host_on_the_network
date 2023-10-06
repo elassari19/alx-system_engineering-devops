@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 # should create IP address received 5 times
 
-if [ "$1" == "" ]
-then
-	echo "Usage: 5-is_the_host_on_the_network {IP_ADDRESS}"
+IP="${1}"
+fn=$(basename "${BASH_SOURCE[@]}")
+
+if ! [ "$IP" ]; then
+	echo "Usage: ${fn} {IP_ADDRESS}"
+else
+	ping -c 5 "${IP}"
+fi
