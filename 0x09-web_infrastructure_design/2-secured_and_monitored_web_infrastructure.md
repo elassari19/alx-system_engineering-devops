@@ -10,6 +10,14 @@ design a three server web infrastructure that hosts the website www.foobar.com, 
 
 ## explain some specifics about this infrastructure
 * #### For every additional element, why you are adding it
+  every successful monitoring platform needs to have five essential components; identify, collect, share, integrate, and govern. Let's break down what each of those mean.
+
+  * Identify
+  * Collect
+  * Share
+  * Integrate
+  * Govern
+
 * #### What are firewalls for
   Basically, a firewall is a cybersecurity solution that protects your computer or network from unwanted traffic coming in or going out.
 
