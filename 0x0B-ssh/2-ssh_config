@@ -1,0 +1,9 @@
+# should SSH configuration file for the local SSH client
+# Requirements: SSH client key ~/.ssh/school, using a password
+
+Host *
+		PasswordAuthentication no
+		IdentityFile ~/.ssh/school
+		SendEnv LANG LC_*
+		HashKnownHosts yes
+		GSSAPIAuthentication yes
