@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# should install Web servers
+# Requirements: Install nginx, listening on port 80, using curl, use systemctl
+
+sudo apt-get -y update
+sudo apt-get -y install nginx
+sudo ufw allow "Nginx HTTP"
+echo 'Hello World!' > /var/www/html/index.html
+sudo service nginx start
