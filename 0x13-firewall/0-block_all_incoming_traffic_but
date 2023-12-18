@@ -1,6 +1,7 @@
 #!/bin/bash env
 # should blocks all incoming traffic, except the following TCP ports
 
+sudo apt-get install ufw
 sudo ufw status
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
