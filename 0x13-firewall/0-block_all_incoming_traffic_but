@@ -1,4 +1,7 @@
-sudo ufw status verbose
+#!/bin/bash env
+# should blocks all incoming traffic, except the following TCP ports
+
+sudo ufw status
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
 ufw allow 80/tcp
