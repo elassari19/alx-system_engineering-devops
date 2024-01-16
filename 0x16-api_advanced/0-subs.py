@@ -7,17 +7,20 @@ from requests import get
 
 
 def number_of_subscribers(subreddit):
-    """
-    should return numver of subscribers
-    """
+	"""
+	should return numver of subscribers
+	"""
 
-    if subreddit is None or not isinstance(subreddit, str):
-        return 0
+	if subreddit is None or not isinstance(subreddit, str):
+		return 0
 
-    response = get('https://www.reddit.com/r/{}/about.json'.format(subreddit))
-    if (not response.ok):
-        return 0
-    
-    results = response.json()
-    count = results.get('data').get('subscribers')
-    return count
+	user_agent = {'User-agent': 'Google Chrome Version 81.0.4044.129'}
+	url = 'https://www.reddit.com/r/{}/about.json'.format(subreddit)
+	response = get(url, headers=user_agent)
+	results = response.json()
+
+	try:
+		return results.get('data').get('subscribers')
+
+	except Exception:
+		return 0
