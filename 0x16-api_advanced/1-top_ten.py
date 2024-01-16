@@ -10,20 +10,25 @@ BASE_URL = 'https://www.reddit.com'
 Reddit's API url restfull
 '''
 
-
 def top_ten(subreddit):
     '''
     should return the title of ten posts
     '''
-    url = "https://api.reddit.com/r/{}?sort=hot&limit=10".format(subreddit)
-    header = {'User-Agent': 'CustomClient/1.0'}
-    req = requests.get(url, headers=header, allow_redirects=False)
-    if req.status_code != 200:
-        print(None)
-        return
-    req = req.json()
-    if "data" in req:
-        for post in req.get("data").get("children"):
-            print(post.get("data").get("title"))
-    else:
-        print(None)
+
+    if subreddit is None or not isinstance(subreddit, str):
+        print("None")
+    
+    user_agent = {'User-agent': 'Google Chrome Version 81.0.4044.129'}
+    url = 'https://www.reddit.com/r/{}/hot/.json'.format(subreddit)
+
+    response = requests.get(url, headers=user_agent, params={ 'limit': 10 })
+    results = response.json()
+
+    try:
+        my_data = results.get('data').get('children')
+
+        for i in my_data:
+            print(i.get('data').get('title'))
+
+    except Exception:
+        print("None")
