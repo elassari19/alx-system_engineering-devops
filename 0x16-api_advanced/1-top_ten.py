@@ -15,30 +15,14 @@ def top_ten(subreddit):
     '''
     should return the title of ten posts
     '''
-    api_headers = {
-        'Accept': 'application/json',
-        'User-Agent': ' '.join([
-            'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
-            'AppleWebKit/537.36 (KHTML, like Gecko)',
-            'Chrome/97.0.4692.71',
-            'Safari/537.36',
-            'Edg/97.0.1072.62'
-        ])
-    }
-    sort = 'top'
-    limit = 10
-    res = requests.get(
-        '{}/r/{}/.json?sort={}&limit={}'.format(
-            BASE_URL,
-            subreddit,
-            sort,
-            limit
-        ),
-        headers=api_headers,
-        allow_redirects=False
-    )
-    if res.status_code == 200:
-        for post in res.json()['data']['children'][0:10]:
-            print(post['data']['title'])
+    header = {'User-Agent': 'CustomClient/1.0'}
+    res = requests.get(BASE_URL+"/r/{}?sort=hot&limit=10".format(subreddit),
+                       headers=header, allow_redirects=False)
+    if res.status_code != 200:
+        return (0)
+    res = res.json()
+    if "data" in res:
+        for post in res.get("data").get("children"):
+            print(post.get("data").get("title"))
     else:
         print(None)
