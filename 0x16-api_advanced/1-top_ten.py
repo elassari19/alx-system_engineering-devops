@@ -1,34 +1,26 @@
 #!/usr/bin/python3
-'''
+"""
 module Reddit API url restfull
-'''
-import requests
+"""
+
+from requests import get
 
 
-BASE_URL = 'https://www.reddit.com'
-'''
-Reddit's API url restfull
-'''
-
-def top_ten(subreddit):
-    '''
+def number_of_subscribers(subreddit):
+    """
     should return the title of ten posts
-    '''
+    """
 
     if subreddit is None or not isinstance(subreddit, str):
-        print("None")
-    
-    user_agent = {'User-agent': 'Google Chrome Version 81.0.4044.129'}
-    url = 'https://www.reddit.com/r/{}/hot/.json'.format(subreddit)
+        return 0
 
-    response = requests.get(url, headers=user_agent, params={ 'limit': 10 })
+    user_agent = {'User-agent': 'Google Chrome Version 81.0.4044.129'}
+    url = 'https://www.reddit.com/r/{}/about.json'.format(subreddit)
+    response = get(url, headers=user_agent)
     results = response.json()
 
     try:
-        my_data = results.get('data').get('children')
-
-        for i in my_data:
-            print(i.get('data').get('title'))
+        return results.get('data').get('subscribers')
 
     except Exception:
-        print("None")
+        return 0
