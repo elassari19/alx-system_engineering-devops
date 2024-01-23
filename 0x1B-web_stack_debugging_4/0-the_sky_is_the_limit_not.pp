@@ -1,0 +1,13 @@
+# should Increases the amount of traffic an Nginx server can handle
+
+# should Increase the ULIMIT of the default file
+exec { 'fix--for-nginx':
+  command => '/bin/sed -i "s/15/4096/" /etc/default/nginx',
+  path    => '/usr/local/bin/:/bin/',
+}
+#->
+# should Restart Nginx
+exec { 'nginx-restart':
+  command => '/etc/init.d/nginx restart',
+  path    => '/etc/init.d/',
+}
