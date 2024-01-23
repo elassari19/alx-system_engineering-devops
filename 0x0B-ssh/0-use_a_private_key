@@ -3,4 +3,4 @@
 # the private key ~/.ssh/school with the user ubuntu
 # Requirements: Only use ssh, cannot use -l, no need to handle private key
 
-ssh ubuntu -i ~/.ssh/school
+ssh ubuntu -i ~/.ssh/school ubuntu@54.172.84.154
