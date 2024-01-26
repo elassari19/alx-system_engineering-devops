@@ -1,3 +1,21 @@
 #!/usr/bin/env bash
 
-systemctl status gunicorn-django |  sed -n 's/.*Main PID: \(.*\)$/\1/g p' | cut -f1 -d' ' | xargs kill -HUP
+# should return list of Gunicorn process ids
+gunicorn_pids=$(pgrep gunicorn)
+
+if [ -z "$gunicorn_pids" ]; then
+    echo "No Gunicorn processes found."
+    exit 1
+fi
+
+# should kill workers ports
+echo "Stopping old workers gracefully..."
+for pid in $gunicorn_pids; do
+    kill -HUP "$pid"
+done
+
+# should wait workers to finish processing
+echo "Waiting for old workers to finish processing..."
+sleep 5
+
+echo "Graceful reload complete"
