@@ -1,4 +1,2 @@
 #!/usr/bin/env bash
-# should reloads Gunicorn.
-#shellcheck disable=SC2009
-ps aux | grep gunicorn | awk '{ print $2 }' | xargs kill -HUP
+ps aux |grep gunicorn |grep projectname | awk '{ print $2 }' |xargs kill -HUP
